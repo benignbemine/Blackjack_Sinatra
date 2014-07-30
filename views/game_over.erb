@@ -1,0 +1,27 @@
+Your total is <%= calculate_total(session[:player_cards]) %>
+<br>
+The dealers total is <%= calculate_total(session[:dealer_cards])%>
+<br>
+
+<% if bust(session[:dealer_cards])%>
+  Dealer busted!!! You win $<%=session[:bet]%> !!!!
+  <% session[:player_wallet]+=session[:bet] %>
+<% elsif bust(session[:player_cards])%>
+  You busted!!!! You lose $<%=session[:bet]%>!!!
+  <% session[:player_wallet]-=session[:bet] %>
+<% elsif calculate_total(session[:player_cards])>calculate_total(session[:dealer_cards]) %>
+  You win $<%=session[:bet]%>!!!
+  <% session[:player_wallet]+=session[:bet] %>
+<% else %>
+  You Lose $<%session[:bet]%>!!!
+  <% session[:player_wallet]-=session[:bet] %>
+<% end %>
+
+<br>
+<br>
+
+Would you like to play again?
+<form action='/game_over' method='post'>
+<input type='submit' name='replay' value='Yes'>
+<input type='submit' name='replay' value='No'>
+</form>

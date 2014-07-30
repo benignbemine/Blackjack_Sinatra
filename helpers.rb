@@ -18,9 +18,7 @@ helpers do
 
   def bust(hand)
     if calculate_total(hand)>21
-      "BUST"
-    else
-      "All Good"
+      true
     end
   end
 
@@ -36,7 +34,6 @@ helpers do
     session[:deck] = deck.shuffle!
 
     #Deal Cards
-
     session[:player_cards] = []
     session[:dealer_cards] = []
     hit(session[:player_cards])
@@ -45,4 +42,36 @@ helpers do
     hit(session[:dealer_cards])
   end
 
+  def dealer_gameplay
+    while calculate_total(session[:dealer_cards])<17
+      hit(session[:dealer_cards])
+    end
+      redirect 'game_over'
+  end
+
+
+  def player_gameplay
+    if session[:hit]=='Yes'
+      hit(session[:player_cards])
+      if bust(session[:player_cards])
+        redirect '/game_over'
+      end
+    else
+    dealer_gameplay
+    end
+  end
+
+  def reset
+    session[:player_cards] = nil
+    session[:dealer_cards] = nil
+    session[:hit] = nil
+    session[:bet] = nil
+    session[:deck] = nil
+  end
+
+  def okay_bet(bet)
+    if session[:player_wallet]>=bet
+      true
+    end
+  end
 end

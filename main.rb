@@ -1,33 +1,68 @@
 require 'rubygems'
 require 'sinatra'
 require 'pry'
-
+require_relative 'helpers'
 set :sessions, true
-
-helpers do
-
-  def calculate_total(cards)
-    55
-  end
-
-end
-
-
 
 
 get '/' do
+  session.clear
+  redirect '/set_name'
+end
+
+get '/set_name' do
   erb :set_name
 end
 
 post '/set_name' do
   session[:player_name] = params[:player_name]
+  session[:player_wallet] = 500
+  redirect '/bet'
+end
+
+get '/bet' do
+  erb :bet
+end
+
+post '/bet' do
+  session[:bet] = params[:bet].to_i
+  if okay_bet(session[:bet])
+  redirect '/game'
+  else
+  redirect '/bet'
+  end
+end
+
+post '/game' do
+  session[:hit] = params[:button]
   redirect '/game'
 end
 
 get '/game' do
-  session[:deck] = [['2', 'H'], ['3','D']]
-  session[:player_cards] = []
-  session[:player_cards] << session[:deck].pop
+  if session[:deck].nil?
+    initialize_deck
+    erb :game
+  else
+    player_gameplay
+  end
   erb :game
 end
+
+get '/game_over' do
+  erb :game_over
+end
+
+post '/game_over' do
+  if params[:replay] == 'Yes'
+    reset
+    redirect '/bet'
+  else
+    redirect '/goodbye'
+  end
+end
+
+get '/goodbye' do
+  erb :goodbye
+end
+
 

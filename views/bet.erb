@@ -1,0 +1,23 @@
+<h4>TIME TO BET!!!!!</h4>
+
+You have $<%= session[:player_wallet] %> to bet!
+How much do you want to bet?
+<br>
+
+<% if session[:bet]!=nil %>
+  <% if !okay_bet(session[:bet])%>
+    Be mindful of how much money you have!!! Bet less :)
+  <% end %>
+<% end %>
+
+<br>
+
+
+<form action='/bet' method='post'>
+Bet $ <input type='text' name='bet'/>
+<br>
+<input type='submit' class='btn'/>
+</form>
+
+
+
