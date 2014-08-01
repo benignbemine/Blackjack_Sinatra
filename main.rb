@@ -38,6 +38,11 @@ post '/game' do
   redirect '/game'
 end
 
+post '/ace' do
+  session[:ace] = params[:ace]
+  redirect '/game'
+end
+
 get '/game' do
   if session[:deck].nil?
     initialize_deck

@@ -2,3 +2,11 @@
 2. From the command line, you can start the server by 'ruby main.rb'
 3. If you have the 'shotgun' gem installed, you can instead run 'shotgun main.rb'
 4. ctrl+c to stop the server
+
+need to:
+
+1. ace functionality
+2. add styling
+3. show dealer cards properly
+4. go to sleep by 11:30
+5.

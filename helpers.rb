@@ -24,7 +24,8 @@ helpers do
 
   def initialize_deck
     suits=['Hearts','Diamonds','Clubs', 'Spades']
-      cards=[['Ace',11],['King', 10], ['Queen',10], ['Jack', 10], 10,9,8,7,6,5,4,3,2]
+      cards=[['Ace',11],#['King', 10], ['Queen',10], ['Jack', 10],
+      10,9,8,7,6,5,4,3,2]
       deck = []
       suits.each do |suit|
         cards.each do |card|
@@ -45,13 +46,26 @@ helpers do
   def dealer_gameplay
     while calculate_total(session[:dealer_cards])<17
       hit(session[:dealer_cards])
+      if has_ace(session[:dealer_cards]) && calculate_total(session[:dealer_cards])>21
+        session[:dealer_cards].each do |card|
+          if card[1]=="Ace"
+            card[2]=1
+          end
+        end
+      end
     end
-      redirect 'game_over'
+    redirect 'game_over'
   end
 
-
   def player_gameplay
-    if session[:hit]=='Yes'
+    if session[:ace]=="Yes"
+      session[:player_cards].each do |card|
+        if card[1]=="Ace"
+          card[2]=1
+        end
+      end
+      session[:ace]=nil
+    elsif session[:hit]=='Yes'
       hit(session[:player_cards])
       if bust(session[:player_cards])
         redirect '/game_over'
@@ -73,5 +87,14 @@ helpers do
     if session[:player_wallet]>=bet
       true
     end
+  end
+
+  def has_ace(hand)
+    hand.each do |card|
+      if card[1]=="Ace" && card[2]==11
+        return true
+      end
+    end
+    return false
   end
 end

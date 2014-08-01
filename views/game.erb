@@ -16,6 +16,16 @@ Your cards are:
   <li><%= show_card(card) %> </li>
 <% end %>
 </ul>
+<br>
+<br>
+<% if has_ace(session[:player_cards]) %>
+  You have an ace! It is currently being valued as 11, would you like to value it instead as 1?
+  <br>
+  <form action='/ace' method='post'>
+    <input type='submit' name='ace' value='Yes'>
+    <input type='submit' name='ace' value='No'>
+  </form>
+<% end %>
 
 Your total is <%= calculate_total(session[:player_cards]) %>
 
