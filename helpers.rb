@@ -23,8 +23,8 @@ helpers do
   end
 
   def initialize_deck
-    suits=['Hearts','Diamonds','Clubs', 'Spades']
-      cards=[['Ace',11],#['King', 10], ['Queen',10], ['Jack', 10],
+    suits=['hearts','diamonds','clubs', 'spades']
+      cards=[['ace',11],['king', 10], ['queen',10], ['jack', 10],
       10,9,8,7,6,5,4,3,2]
       deck = []
       suits.each do |suit|
@@ -96,5 +96,9 @@ helpers do
       end
     end
     return false
+  end
+
+  def image(card)
+    "<img src='/images/cards/#{card[0]}_#{card[1]}.jpg'>"
   end
 end

@@ -1,21 +1,20 @@
 <h4>Hi <%= session[:player_name] %></h4>
 
 The Dealer cards are:
-<ul>
-<% session[:dealer_cards].each do |card| %>
-  <li><%= show_card(card) %> </li>
-<% end %>
-</ul>
-
+<br>
+<!-- <ul>
+<li><%= show_card(session[:dealer_cards][0]) %> </li>
+</ul> -->
+<img src="/images/cards/cover.jpg">
+<%=image(session[:dealer_cards][0])%>
 <br>
 <br>
 
 Your cards are:
-<ul>
+<br>
 <% session[:player_cards].each do |card| %>
-  <li><%= show_card(card) %> </li>
+<%=image(card)%>
 <% end %>
-</ul>
 <br>
 <br>
 <% if has_ace(session[:player_cards]) %>
