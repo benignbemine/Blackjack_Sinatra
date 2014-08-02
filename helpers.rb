@@ -44,7 +44,8 @@ helpers do
   end
 
   def dealer_gameplay
-    while calculate_total(session[:dealer_cards])<17
+    sleep(1)
+    if (calculate_total(session[:dealer_cards])<17 && session[:dealer_reveal] == 'See dealer hit')
       hit(session[:dealer_cards])
       if has_ace(session[:dealer_cards]) && calculate_total(session[:dealer_cards])>21
         session[:dealer_cards].each do |card|
@@ -53,8 +54,9 @@ helpers do
           end
         end
       end
+    elsif session[:end_game] == 'See the outcome!'
+      redirect '/game_over'
     end
-    redirect 'game_over'
   end
 
   def player_gameplay
@@ -65,13 +67,15 @@ helpers do
         end
       end
       session[:ace]=nil
-    elsif session[:hit]=='Yes'
+    elsif session[:hit] == 'Yes'
       hit(session[:player_cards])
       if bust(session[:player_cards])
         redirect '/game_over'
       end
+    elsif session[:hit] == 'No'
+      dealer_gameplay
     else
-    dealer_gameplay
+      puts "error"
     end
   end
 
@@ -81,6 +85,8 @@ helpers do
     session[:hit] = nil
     session[:bet] = nil
     session[:deck] = nil
+    session[:end_game] = nil
+    session[:dealer_reveal] = nil
   end
 
   def okay_bet(bet)

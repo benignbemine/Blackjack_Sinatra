@@ -2,11 +2,27 @@
 
 The Dealer cards are:
 <br>
-<!-- <ul>
-<li><%= show_card(session[:dealer_cards][0]) %> </li>
-</ul> -->
-<img src="/images/cards/cover.jpg">
-<%=image(session[:dealer_cards][0])%>
+<% session[:dealer_cards].each_with_index do |card, index| %>
+  <% if index == 0 && session[:hit] != 'No' %>
+    <img src="/images/cards/cover.jpg">
+  <% else %>
+    <%= image(card) %>
+  <% end %>
+<% end %>
+
+<br>
+<br>
+
+<% if session[:hit] == 'No' && calculate_total(session[:dealer_cards])<17 %>
+  <form action='/dealer_reveal' method='post'>
+    <input type='submit' name='dealer_reveal' value='See dealer hit'>
+  </form>
+<% end %>
+<% if session[:hit] == 'No' && calculate_total(session[:dealer_cards])>=17 %>
+<form action='/end_game' method='post'>
+  <input type='submit' name='end_game' value='See the outcome!'>
+</form>
+<% end %>
 <br>
 <br>
 

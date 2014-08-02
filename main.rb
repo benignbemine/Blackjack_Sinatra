@@ -33,8 +33,18 @@ post '/bet' do
   end
 end
 
+post '/dealer_reveal' do
+  session[:dealer_reveal] = params[:dealer_reveal]
+  redirect '/game'
+end
+
+post '/end_game' do
+  redirect '/game_over'
+end
+
 post '/game' do
   session[:hit] = params[:button]
+  session[:end_game] = params[:end_game]
   redirect '/game'
 end
 
