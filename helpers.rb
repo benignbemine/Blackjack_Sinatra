@@ -97,7 +97,7 @@ helpers do
 
   def has_ace(hand)
     hand.each do |card|
-      if card[1]=="Ace" && card[2]==11
+      if card[0]=="ace" && card[2]==11
         return true
       end
     end

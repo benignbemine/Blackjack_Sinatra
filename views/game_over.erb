@@ -1,8 +1,7 @@
-Your total is <%= calculate_total(session[:player_cards]) %>
-<br>
-The dealers total is <%= calculate_total(session[:dealer_cards])%>
-<br>
-
+<p>Your total is <%= calculate_total(session[:player_cards]) %>.
+The dealers total is <%= calculate_total(session[:dealer_cards])%>.
+</p>
+<h1>
 <% if bust(session[:dealer_cards])%>
   Dealer busted!!! You win $<%=session[:bet]%> !!!!
   <% session[:player_wallet]+=session[:bet] %>
@@ -13,9 +12,10 @@ The dealers total is <%= calculate_total(session[:dealer_cards])%>
   You win $<%=session[:bet]%>!!!
   <% session[:player_wallet]+=session[:bet] %>
 <% else %>
-  You Lose $<%session[:bet]%>!!!
+  You Lose $<%=session[:bet]%>!!!
   <% session[:player_wallet]-=session[:bet] %>
 <% end %>
+</h1>
 
 <br>
 <br>
