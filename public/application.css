@@ -1,3 +1,17 @@
-.container {
+body {
   background-color: #FFB6C1;
+}
+
+.well{
+  background-color: #CAFFB6;
+  width: 80%;
+  margin: auto;
+}
+
+#buttons{
+  margin: auto;
+}
+
+img.cards {
+  margin 0 5px 5px 0;
 }

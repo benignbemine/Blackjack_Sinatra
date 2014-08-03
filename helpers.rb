@@ -67,12 +67,12 @@ helpers do
         end
       end
       session[:ace]=nil
-    elsif session[:hit] == 'Yes'
+    elsif session[:hit] == 'Hit'
       hit(session[:player_cards])
       if bust(session[:player_cards])
         redirect '/game_over'
       end
-    elsif session[:hit] == 'No'
+    elsif session[:hit] == 'Stay'
       dealer_gameplay
     else
       puts "error"
@@ -105,6 +105,6 @@ helpers do
   end
 
   def image(card)
-    "<img src='/images/cards/#{card[0]}_#{card[1]}.jpg'>"
+    "<img src='/images/cards/#{card[0]}_#{card[1]}.jpg' class = 'cards'>"
   end
 end

@@ -1,7 +1,9 @@
-didn't realize that instead of redirecting to '/game' ot refresh I could have just rendered 'erb :game' template again to reload. this one concept could most likely simplify my code.
+didn't realize that instead of redirecting to '/game' of refresh I could have just rendered 'erb :game' template again to reload. this one concept could most likely simplify my code.
 Also, didn't know about 'before'
 bootstrap 'Wells' components/misc/wells
-
+also, 'halt'
+also, can use instance variables to show/hide certain html
+define loser/winner messages as methods in helper
 
 1. Make sure the 'sinatra' gem is installed.
 2. From the command line, you can start the server by 'ruby main.rb'
@@ -14,3 +16,5 @@ need to:
 3. show dealer cards properly
 4. go to sleep by 11:30
 5.
+
+

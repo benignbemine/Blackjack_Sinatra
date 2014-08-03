@@ -15,6 +15,10 @@ get '/set_name' do
 end
 
 post '/set_name' do
+  if params[:player_name].empty?
+    @error = 'Name is required'
+    halt erb :set_name
+  end
   session[:player_name] = params[:player_name]
   session[:player_wallet] = 500
   redirect '/bet'
@@ -25,6 +29,11 @@ get '/bet' do
 end
 
 post '/bet' do
+  if params[:bet].to_i < 1
+    @error = "You must bet at least 1 dollar"
+    halt erb :bet
+  end
+
   session[:bet] = params[:bet].to_i
   if okay_bet(session[:bet])
   redirect '/game'

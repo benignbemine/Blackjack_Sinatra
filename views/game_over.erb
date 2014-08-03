@@ -1,6 +1,6 @@
-<p>Your total is <%= calculate_total(session[:player_cards]) %>.
+<h4>Your total is <%= calculate_total(session[:player_cards]) %>.
 The dealers total is <%= calculate_total(session[:dealer_cards])%>.
-</p>
+</4>
 <h1>
 <% if bust(session[:dealer_cards])%>
   Dealer busted!!! You win $<%=session[:bet]%> !!!!
@@ -16,12 +16,8 @@ The dealers total is <%= calculate_total(session[:dealer_cards])%>.
   <% session[:player_wallet]-=session[:bet] %>
 <% end %>
 </h1>
-
-<br>
-<br>
-
-Would you like to play again?
+<h2>Would you like to play again?</h2>
 <form action='/game_over' method='post'>
-<input type='submit' name='replay' value='Yes'>
-<input type='submit' name='replay' value='No'>
+<input type='submit' name='replay' value='Yes' class="btn">
+<input type='submit' name='replay' value='No' class = "btn">
 </form>
