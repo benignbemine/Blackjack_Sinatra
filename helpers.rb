@@ -43,42 +43,6 @@ helpers do
     hit(session[:dealer_cards])
   end
 
-  def dealer_gameplay
-    sleep(1)
-    if (calculate_total(session[:dealer_cards])<17 && session[:dealer_reveal] == 'See dealer hit')
-      hit(session[:dealer_cards])
-      if has_ace(session[:dealer_cards]) && calculate_total(session[:dealer_cards])>21
-        session[:dealer_cards].each do |card|
-          if card[1]=="Ace"
-            card[2]=1
-          end
-        end
-      end
-    elsif session[:end_game] == 'See the outcome!'
-      redirect '/game_over'
-    end
-  end
-
-  def player_gameplay
-    if session[:ace]=="Yes"
-      session[:player_cards].each do |card|
-        if card[1]=="Ace"
-          card[2]=1
-        end
-      end
-      session[:ace]=nil
-    elsif session[:hit] == 'Hit'
-      hit(session[:player_cards])
-      if bust(session[:player_cards])
-        redirect '/game_over'
-      end
-    elsif session[:hit] == 'Stay'
-      dealer_gameplay
-    else
-      puts "error"
-    end
-  end
-
   def reset
     session[:player_cards] = nil
     session[:dealer_cards] = nil

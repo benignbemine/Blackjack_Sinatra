@@ -1,6 +1,13 @@
 $(document).ready(function() {
-  $("form#hit_form input").click(function() {
-    alert("poop");
+  $("#hit_form .hit").click(function() {
+    alert("hit");
+    $.ajax({
+      type: 'POST',
+      url: '/hit'
+    }).done(function(msg){
+      alert(msg)
+      $("div#game").replaceWith(msg);
+    });
     return false;
   });
 });
