@@ -25,7 +25,7 @@ helpers do
   def initialize_deck
     suits=['hearts','diamonds','clubs', 'spades']
       cards=[['ace',11],['king', 10], ['queen',10], ['jack', 10],
-      10,9,8,7,6,5,4,3,2]
+       10,9,8,7,6,5,4,3,2]
       deck = []
       suits.each do |suit|
         cards.each do |card|
@@ -61,7 +61,7 @@ helpers do
 
   def has_ace(hand)
     hand.each do |card|
-      if card[0]=="ace" && card[2]==11
+      if (card[1]=="ace" && card[2]==11)
         return true
       end
     end

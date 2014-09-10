@@ -55,7 +55,7 @@ end
 post '/ace' do
   if params[:ace] == 'Yes'
     session[:player_cards].each do |card|
-      if card[1] == "Ace"
+      if card[1] == "ace"
         card[2] = 1
         break
       end
@@ -73,7 +73,8 @@ post '/hit' do
   elsif params[:button] == 'Stay'
     session[:hit] = 'Stay'
   end
-  erb :game, layout: false
+
+  erb :game
 end
 
 post '/dealer_reveal' do

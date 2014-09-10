@@ -1,13 +1,16 @@
-$(document).ready(function() {
-  $("#hit_form .hit").click(function() {
-    alert("hit");
-    $.ajax({
-      type: 'POST',
-      url: '/hit'
-    }).done(function(msg){
-      alert(msg)
-      $("div#game").replaceWith(msg);
-    });
-    return false;
-  });
-});
+// $(document).ready(function (){
+
+//   $("form#hit_form input").click(function (){
+//     alert("player hits!");
+
+//     $.ajax({
+//       type: "POST",
+//       url: "/hit"
+//     }).done(function(msg) {
+//       $("#game").html(msg);
+//     });
+
+
+//     return false;
+//   });
+// });

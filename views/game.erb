@@ -1,5 +1,5 @@
 <div id="game">
-  <h2>Hi <%= session[:player_name] %></h2>
+  <h1>Hi <%= session[:player_name] %>!</h1>
 
     <div id="buttons">
 
@@ -13,7 +13,7 @@
         </form>
       <% end %>
 
-      <h2>Your total is <%= calculate_total(session[:player_cards]) %>. Would you like to hit?</h2>
+      <h3>Your total is <%= calculate_total(session[:player_cards]) %>. Would you like to hit?</h3>
       <form id ='hit_form' action='/hit' method='post'>
       <input type='submit' name='button' value='Hit' class = 'btn btn-primary btn-lg hit'>
       <input type='submit' name='button' value='Stay' class = 'btn btn-warning btn-lg stay'>
