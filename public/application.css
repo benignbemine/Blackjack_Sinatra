@@ -8,7 +8,7 @@ body {
   margin: auto;
 }
 
-#buttons{
+.inline{
   margin: auto;
   display: inline-block;
 }

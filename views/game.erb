@@ -3,37 +3,36 @@
 
     <div id="buttons">
 
-    <% if session[:hit]!='Stay' %>
-      <% if has_ace(session[:player_cards]) %>
-        You have an ace! It is currently being valued as 11, would you like to value it instead as 1?
-        <br>
-        <form id='ace_one' action='/ace_as_one' method='post'>
-          <input type='submit' name='ace' value='Yes' class = "btn btn-info">
+      <% if session[:hit]!='Stay' %>
+        <% if has_ace(session[:player_cards]) %>
+          <h3>You have an ace! It is currently being valued as 11, would you like to value it instead as 1?</h3>
+          <form id='ace_one' action='/ace_as_one' method='post' class = 'inline'>
+            <input type='submit' name='ace' value='Yes' class = "btn btn-info">
+          </form>
+          <form id = 'ace_eleven' action='/ace_as_eleven' method='post' class = 'inline'>
+            <input type='submit' name='ace' value='No' class = "btn btn-info">
+          </form>
+        <% end %>
+
+        <h3>Your total is <%= calculate_total(session[:player_cards]) %>. Would you like to hit?</h3>
+        <form id='hit_form' action='/hit' method='post' class = 'inline'>
+          <input type='submit' name='button' value='Hit' class = 'btn btn-primary btn-lg hit'>
         </form>
-        <form id = 'ace_eleven' action='/ace_as_eleven' method='post'>
-          <input type='submit' name='ace' value='No' class = "btn btn-info">
+        <form id='stay_form' action='/stay' method='post' class = 'inline'>
+          <input type='submit' name='button' value='Stay' class = 'btn btn-success btn-lg stay'>
         </form>
       <% end %>
 
-      <h3>Your total is <%= calculate_total(session[:player_cards]) %>. Would you like to hit?</h3>
-      <form id='hit_form' action='/hit' method='post'>
-        <input type='submit' name='button' value='Hit' class = 'btn btn-primary btn-lg hit'>
+      <% if session[:hit] == 'Stay' && calculate_total(session[:dealer_cards])<17 %>
+        <form id = 'dealer_reveal' action='/dealer_reveal' method='post'>
+          <input type='submit' name='dealer_reveal' value='See dealer hit' class = 'btn btn-primary'>
+        </form>
+      <% end %>
+      <% if session[:hit] == 'Stay' && calculate_total(session[:dealer_cards])>=17 %>
+      <form action='/end_game' method='post'>
+        <input type='submit' name='end_game' value='See the outcome!' class = 'btn btn-danger'>
       </form>
-      <form id='stay_form' action='/stay' method='post'>
-        <input type='submit' name='button' value='Stay' class = 'btn btn-success btn-lg stay'>
-      </form>
-    <% end %>
-
-    <% if session[:hit] == 'Stay' && calculate_total(session[:dealer_cards])<17 %>
-      <form id = 'dealer_reveal' action='/dealer_reveal' method='post'>
-        <input type='submit' name='dealer_reveal' value='See dealer hit' class = 'btn btn-primary'>
-      </form>
-    <% end %>
-    <% if session[:hit] == 'Stay' && calculate_total(session[:dealer_cards])>=17 %>
-    <form action='/end_game' method='post'>
-      <input type='submit' name='end_game' value='See the outcome!' class = 'btn btn-danger'>
-    </form>
-    <% end %>
+      <% end %>
 
   </div>
 
