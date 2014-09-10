@@ -59,11 +59,11 @@ post '/ace_as_one' do
       break
     end
   end
-  erb :game
+  erb :game, layout: false
 end
 
 post '/ace_as_eleven' do
-  erb :game
+  erb :game, layout: false
 end
 
 post '/hit' do
@@ -93,7 +93,7 @@ post '/dealer_reveal' do
   elsif session[:end_game] == 'See the outcome!'
   redirect '/game_over'
   end
-  erb :game
+  erb :game, layout: false
 end
 
 

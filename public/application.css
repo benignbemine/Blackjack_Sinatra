@@ -10,6 +10,7 @@ body {
 
 #buttons{
   margin: auto;
+  display: inline-block;
 }
 
 img.cards {

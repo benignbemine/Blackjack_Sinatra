@@ -10,7 +10,7 @@
         <form id='ace_one' action='/ace_as_one' method='post'>
           <input type='submit' name='ace' value='Yes' class = "btn btn-info">
         </form>
-        <form action='/ace_as_eleven' method='post'>
+        <form id = 'ace_eleven' action='/ace_as_eleven' method='post'>
           <input type='submit' name='ace' value='No' class = "btn btn-info">
         </form>
       <% end %>
@@ -20,12 +20,12 @@
         <input type='submit' name='button' value='Hit' class = 'btn btn-primary btn-lg hit'>
       </form>
       <form id='stay_form' action='/stay' method='post'>
-        <input type='submit' name='button' value='Stay' class = 'btn btn-warning btn-lg stay'>
+        <input type='submit' name='button' value='Stay' class = 'btn btn-success btn-lg stay'>
       </form>
     <% end %>
 
     <% if session[:hit] == 'Stay' && calculate_total(session[:dealer_cards])<17 %>
-      <form action='/dealer_reveal' method='post'>
+      <form id = 'dealer_reveal' action='/dealer_reveal' method='post'>
         <input type='submit' name='dealer_reveal' value='See dealer hit' class = 'btn btn-primary'>
       </form>
     <% end %>
