@@ -65,15 +65,15 @@ post '/ace' do
 end
 
 post '/hit' do
-  if params[:button] == 'Hit'
-    hit(session[:player_cards])
-    if bust(session[:player_cards])
+  hit(session[:player_cards])
+  if bust(session[:player_cards])
     redirect  '/game_over'
-    end
-  elsif params[:button] == 'Stay'
-    session[:hit] = 'Stay'
   end
+  erb :game, layout: false
+end
 
+post '/stay' do
+  session[:hit] = 'Stay'
   erb :game
 end
 

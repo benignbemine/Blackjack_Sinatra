@@ -1,11 +1,28 @@
-// $(document).ready(function (){
+$(document).ready(function (){
 
-//   $("form#hit_form input").click(function (){
-//     alert("player hits!");
+  $("form#hit_form input").click(function (){
+
+    $.ajax({
+      type: "POST",
+      url: "/hit"
+    }).done(function(msg) {
+      $("#game").html(msg);
+    });
+
+
+    return false;
+  });
+
+
+});
+
+
+// $(document).ready(function (){
+//   $("form#stay_form input").click(function (){
 
 //     $.ajax({
 //       type: "POST",
-//       url: "/hit"
+//       url: "/stay"
 //     }).done(function(msg) {
 //       $("#game").html(msg);
 //     });

@@ -15,8 +15,10 @@
 
       <h3>Your total is <%= calculate_total(session[:player_cards]) %>. Would you like to hit?</h3>
       <form id ='hit_form' action='/hit' method='post'>
-      <input type='submit' name='button' value='Hit' class = 'btn btn-primary btn-lg hit'>
-      <input type='submit' name='button' value='Stay' class = 'btn btn-warning btn-lg stay'>
+        <input type='submit' name='button' value='Hit' class = 'btn btn-primary btn-lg hit'>
+      </form>
+      <form id ='stay_form' action='/stay' method='post'>
+        <input type='submit' name='button' value='Stay' class = 'btn btn-warning btn-lg stay'>
       </form>
     <% end %>
 
