@@ -7,17 +7,19 @@
       <% if has_ace(session[:player_cards]) %>
         You have an ace! It is currently being valued as 11, would you like to value it instead as 1?
         <br>
-        <form action='/ace' method='post'>
+        <form id='ace_one' action='/ace_as_one' method='post'>
           <input type='submit' name='ace' value='Yes' class = "btn btn-info">
+        </form>
+        <form action='/ace_as_eleven' method='post'>
           <input type='submit' name='ace' value='No' class = "btn btn-info">
         </form>
       <% end %>
 
       <h3>Your total is <%= calculate_total(session[:player_cards]) %>. Would you like to hit?</h3>
-      <form id ='hit_form' action='/hit' method='post'>
+      <form id='hit_form' action='/hit' method='post'>
         <input type='submit' name='button' value='Hit' class = 'btn btn-primary btn-lg hit'>
       </form>
-      <form id ='stay_form' action='/stay' method='post'>
+      <form id='stay_form' action='/stay' method='post'>
         <input type='submit' name='button' value='Stay' class = 'btn btn-warning btn-lg stay'>
       </form>
     <% end %>

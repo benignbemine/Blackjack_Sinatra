@@ -52,15 +52,17 @@ get '/game' do
   erb :game
 end
 
-post '/ace' do
-  if params[:ace] == 'Yes'
-    session[:player_cards].each do |card|
-      if card[1] == "ace"
-        card[2] = 1
-        break
-      end
+post '/ace_as_one' do
+  session[:player_cards].each do |card|
+    if card[1] == "ace"
+      card[2] = 1
+      break
     end
   end
+  erb :game
+end
+
+post '/ace_as_eleven' do
   erb :game
 end
 
@@ -74,7 +76,7 @@ end
 
 post '/stay' do
   session[:hit] = 'Stay'
-  erb :game
+  erb :game, layout: false
 end
 
 post '/dealer_reveal' do
@@ -100,68 +102,6 @@ post '/end_game' do
   redirect '/game_over'
 end
 
-
-
-
-
-
-
-
-
-
-# post '/dealer_reveal' do
-#   session[:dealer_reveal] = params[:dealer_reveal]
-#   redirect '/game'
-# end
-
-
-
-# post '/game' do
-#   session[:hit] = params[:button]
-#   session[:end_game] = params[:end_game]
-#   redirect '/game'
-# end
-
-# post '/hit' do
-#   if params[:hit] == 'Hit'
-#     hit(session[:player_cards])
-#     if bust(session[:player_cards])
-#       redirect '/game_over'
-#     end
-#   elsif params[:hit] == 'Stay'
-#     dealer_gameplay
-#   end
-#   erb :game
-# end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-post '/ace' do
-  session[:ace] = params[:ace]
-  redirect '/game'
-end
-
-# get '/game' do
-#   if session[:deck].nil?
-#     initialize_deck
-#     erb :game
-#   else
-#     player_gameplay
-#   end
-#   erb :game
-# end
 
 get '/game_over' do
   erb :game_over
